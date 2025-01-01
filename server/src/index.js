@@ -2,9 +2,9 @@ import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import cors from "cors";
-import { clerkMiddleware } from '@clerk/express'
-import fileUpload from "express-fileupload"
-import path from "path"
+import { clerkMiddleware } from "@clerk/express";
+import fileUpload from "express-fileupload";
+import path from "path";
 // import cookieParser from "cookie-parser"
 dotenv.config();
 // VibeNest
@@ -19,20 +19,25 @@ import statsRoutes from "./routes/statsRoutes.js";
 import { connectDb } from "./lib/db.js";
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: "http://localhost:6020",
+  credentials: true
+} ));
 const __dirname = path.resolve();
 
-app.use(clerkMiddleware()) // this will add auth to req object => req.auth.userID
+app.use(clerkMiddleware()); // this will add auth to req object => req.auth.userID
 
 /// file upload....
-app.use(fileUpload({
-  useTempFiles: true,
-  tempFileDir: path.join(__dirname, "tmp"),
-  createParentPath: true,
-  limits:{
-    fileSize: 50 * 1024 * 1024 // 50MB
-  }
-}))
+app.use(
+  fileUpload({
+    useTempFiles: true,
+    tempFileDir: path.join(__dirname, "tmp"),
+    createParentPath: true,
+    limits: {
+      fileSize: 50 * 1024 * 1024, // 50MB
+    },
+  })
+);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -45,11 +50,17 @@ app.use("/api/albums", albumRoutes);
 app.use("/api/stats", statsRoutes);
 
 // error handler
-app.use((err, req,res,next) => {
-  console.error(err.stack)
-  res.status(500).json({message: process.env.NODE_ENV === "production" ? "Internal Server Error" : err.message})
-
-})
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res
+    .status(500)
+    .json({
+      message:
+        process.env.NODE_ENV === "production"
+          ? "Internal Server Error"
+          : err.message,
+    });
+});
 
 const PORT = process.env.PORT || 8020;
 
@@ -58,6 +69,4 @@ app.listen(PORT, () => {
   connectDb();
 });
 
-
-
-// todo: socket.io 
+// todo: socket.io
