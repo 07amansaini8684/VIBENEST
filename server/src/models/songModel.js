@@ -12,7 +12,6 @@ const songSchema = new mongoose.Schema(
     },
     album: {
       type: String,
-      required: true,
     },
     imageUrl: {
       type: String,
@@ -32,7 +31,7 @@ const songSchema = new mongoose.Schema(
         required: false
     }
   },
-  { timestanmps: true }
+  { timestamps: true }
 );
 
 export const Song = mongoose.model("Song", songSchema);
