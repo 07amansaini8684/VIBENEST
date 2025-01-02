@@ -34,7 +34,7 @@ const AlbumPage = () => {
 
     return (
         <div className="h-full">
-            <ScrollArea className="h-full">
+            <ScrollArea className="h-full rounded-md">
                 {/* // main Conent  */}
                 <div className="relative min-h-full">
                     <div
