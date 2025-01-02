@@ -14,7 +14,7 @@ const LeftSidebar = () => {
     const { albums, fetchAlbums, isLoading, error } = useMusicStore();
     useEffect(() => { fetchAlbums() }, [fetchAlbums])
     // console the data
-    console.log(albums)
+    // console.log(albums)
     if (error) {
         toast.error(error)
     }

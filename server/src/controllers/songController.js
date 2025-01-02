@@ -6,7 +6,7 @@ export const getAllSongs = async (req, res, next) => {
     if (!songs) {
       return res.status(404).json({ message: "No songs found" });
     }
-    res.status(200).json({ message: "success!! got all songs", songs });
+    res.status(200).json(songs);
   } catch (error) {
     console.log("Error in getAllSongs controller", error);
     next(error);
@@ -35,7 +35,7 @@ export const getFeautredSongs = async (req, res, next) => {
     if (!songs) {
       return res.status(404).json({ message: "No songs found" });
     }
-    res.status(200).json({ message: "success!! got feautred songs", songs });
+    res.status(200).json( songs );
   } catch (error) {
     console.log("Error in getFeautredSongs controller", error);
     next(error);
@@ -64,7 +64,7 @@ export const getMadeForyouSongs = async (req, res, next) => {
     if (!songs) {
       return res.status(404).json({ message: "No songs found" });
     }
-    res.status(200).json({ message: "success!! got songs for you", songs });
+    res.status(200).json( songs );
   } catch (error) {
     console.log("Error in getMadeForyouSongs controller", error);
     next(error);
@@ -93,7 +93,7 @@ export const getTrendingSongs = async (req, res, next) => {
         if (!songs) {
           return res.status(404).json({ message: "No songs found" });
         }
-        res.status(200).json({ message: "success!! got songs for you", songs });
+        res.status(200).json(songs);
       } catch (error) {
         console.log("Error in getMadeForyouSongs controller", error);
         next(error);
