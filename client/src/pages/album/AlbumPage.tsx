@@ -6,6 +6,7 @@ import { AudioLines, Clock, Music2, PlayIcon } from "lucide-react"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 
+// converting the duration if approprate formate
 
 const AlbumPage = () => {
     // generating randome colors 
@@ -18,12 +19,14 @@ const AlbumPage = () => {
     }, []); // Empty dependency array ensures this runs only once when the component mounts
 
 
-    // converting the duration if approprate formate
+    
     const formatDuration = (duration: number) => {
         const minutes = Math.floor(duration / 60);
         const seconds = duration % 60;
         return `${minutes}:${seconds.toString().padStart(2, '0')}`;
     };
+
+
 
 
     const { albumId } = useParams<{ albumId: string }>()
@@ -41,10 +44,10 @@ const AlbumPage = () => {
         playAlbum(currentAlbum?.songs, index)
     }
 
-    const handlePlay = () =>{
-        if(!currentAlbum)return
+    const handlePlay = () => {
+        if (!currentAlbum) return
         const isCurrentAlbumPlaying = currentAlbum?.songs.some(song => song._id === currentSong?._id)
-        if(isCurrentAlbumPlaying) togglePlay();
+        if (isCurrentAlbumPlaying) togglePlay();
         else {
             playAlbum(currentAlbum?.songs, 0)
         }
@@ -122,9 +125,9 @@ const AlbumPage = () => {
                                             ) : (
                                                 <span className="group-hover:hidden">{index + 1}</span>
                                             )}
-                                           {!isCurrentSong && (
-                                             <PlayIcon className="hidden group-hover:block" />
-                                           )}
+                                            {!isCurrentSong && (
+                                                <PlayIcon className="hidden group-hover:block" />
+                                            )}
                                         </div>
                                         <div className="flex items-center gap-3">
                                             <img

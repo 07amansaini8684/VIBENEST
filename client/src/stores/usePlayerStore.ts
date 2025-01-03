@@ -26,8 +26,8 @@ export const usePlayerStore = create<PlayerStore>((set, get) => ({
     initializePlayer: (songs: Song[]) => {
         set({
             queue: songs,
-            currentSong: get().currentSong || songs[0],
-            currentSongIndex: get().currentSongIndex === -1 ? 0 : get().currentSongIndex,
+			currentSong: get().currentSong || songs[0],
+			currentSongIndex: get().currentSongIndex === -1 ? 0 : get().currentSongIndex,
 
         })
     },

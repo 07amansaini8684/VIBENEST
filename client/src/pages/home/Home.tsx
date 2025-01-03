@@ -5,16 +5,26 @@ import { useEffect } from "react";
 import FeaturedSection from "./components/FeaturedSection";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import SectionGrid from "./components/SectionGrid";
+import { usePlayerStore } from "@/stores/usePlayerStore";
 
 const HomePage = () => {
 
-  const { isLoading, error, madeForYouSongs, trendingSongs, fetchFeaturedSongs, fetchMadeForYouSongs, fetchTrendingSongs } = useMusicStore();
+  const { isLoading, error, madeForYouSongs, trendingSongs,featuredSongs, fetchFeaturedSongs, fetchMadeForYouSongs, fetchTrendingSongs } = useMusicStore();
 
   useEffect(() => {
     fetchFeaturedSongs();
     fetchMadeForYouSongs();
     fetchTrendingSongs();
   }, [fetchFeaturedSongs, fetchMadeForYouSongs, fetchTrendingSongs]);
+
+  const {initializePlayer} = usePlayerStore()
+
+  useEffect(() => {
+    if(madeForYouSongs.length > 0 && featuredSongs.length > 0 && trendingSongs.length > 0){
+      // const allSongs = {...featuredSongs, ...madeForYouSongs, ...trendingSongs};
+      // initializePlayer(allSongs)
+    }
+  },[initializePlayer, madeForYouSongs, featuredSongs, trendingSongs])
 
   // console.log({isLoading, error, madeForYouSongs, featuredSongs, trendingSongs})
   if (isLoading) {

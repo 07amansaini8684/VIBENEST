@@ -14,7 +14,7 @@ type SectionProps = {
 
 }
 const SectionGrid = ({ title, songs, isLoading, error }: SectionProps) => {
-    console.log(title, songs)
+    // console.log(title, songs)
 
     if (isLoading) return <SectionGridSkeleton />
     if (error) return <ErrorState />
