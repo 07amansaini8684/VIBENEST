@@ -1,9 +1,10 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import { ErrorState } from "@/components/skeletons/ErrorState";
 import SectionGridSkeleton from "@/components/skeletons/SectionGridSkeleton";
 import { Button } from "@/components/ui/button";
 import { Song } from "@/types";
 import { ChevronRight } from "lucide-react";
+import PlayButton from "./PlayButton";
 
 type SectionProps = {
     title: string;
@@ -38,7 +39,7 @@ const SectionGrid = ({ title, songs, isLoading, error }: SectionProps) => {
                             <div className="aspcet-square rounded-sm shadow-md overflow-hidden bg-zinc-700">
                                 <img src={song?.imageUrl ? song?.imageUrl : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXu2w9IxdJUjhuovZecMR3d9f_bPnCINJl5g&s"} alt="song image" className="  w-ull h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                             </div>
-                            {/* // todo : add play button for the play functionality */}
+                           <PlayButton song={song}/>
                         </div>
                         <div className="flex flex-col px-2">
                             <h3 className="text-md font-semibold">{song?.title ? song.title : "Unknown" }</h3>

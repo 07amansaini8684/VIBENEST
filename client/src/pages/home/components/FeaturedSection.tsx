@@ -1,6 +1,7 @@
 import { ErrorState } from "@/components/skeletons/ErrorState";
 import FeaturedSectionSkeleton from "@/components/skeletons/FeaturedSectionSkeleton";
 import { useMusicStore } from "@/stores/useMusicStore";
+import PlayButton from "./PlayButton";
 // import { Music2 } from "lucide-react";
 
 
@@ -25,8 +26,8 @@ const FeaturedSection = () => {
                         <h3 className="text-sm font-semibold text-white line-clamp-1">{song?.title}</h3>
                         <p className="text-xs text-zinc-400 line-clamp-1 truncate">{song?.artist}</p>
                     </div>
+                    <PlayButton song={song} />
                 </div>
-                // todo add play button
             ))}
         </div>
     )
