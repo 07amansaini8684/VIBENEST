@@ -8,7 +8,6 @@ import { useEffect, useRef, useState } from "react";
 
 const PlayBackControls = () => {
     const { currentSong, isPlaying, togglePlay, playNext, playPrevious } = usePlayerStore();
-
     const [volume, setVolume] = useState(75);
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
